@@ -9,7 +9,10 @@
   "dependencies": {
     "react": "15.3.2",
     "react-native": "0.37.0",
-    "immutable": "^3.8.1"
+    "react-mixin": "^3.0.5",
+    "immutable": "^3.8.1",
+    "react-native-timer-mixin": "^0.11.0"
+
   },
   "jest": {
     "preset": "jest-react-native"
