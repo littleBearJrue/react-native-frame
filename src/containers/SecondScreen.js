@@ -11,13 +11,13 @@ import {
 
 import Immutable from 'immutable';
 
-import { mixin } from '../utils';
+import { Mixin } from '../utils';
 
 class SecondScreen extends Component {
   constructor(props) {
     super(props);
-    
-    mixin.pureRenderMixin(this);
+
+    Mixin.pureRenderMixin(this);
   }
 
   componentWillMount() {
