@@ -33,6 +33,13 @@ const kScreens = {
       scene: makeScene(require('./MainScreen')),
     };
   },
+  get secondScreen() {
+    return {
+      navStyle: { backgroundColor: 'white' },
+      title: '第二页面',
+      scene: makeScene(require('./SecondScreen')),
+    };
+  },
 };
 
 const styles = StyleSheet.create({
@@ -57,7 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   navBarItem: {
-    flex: 1,
     height: 44,
     alignItems: 'center',
     flexDirection: 'row',
@@ -292,7 +298,7 @@ class App extends React.Component {
       );
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1}}>
         <StatusBar
           translucent
           backgroundColor={'transparent'}

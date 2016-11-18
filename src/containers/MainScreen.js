@@ -6,23 +6,35 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 
-export  class MainScreen extends Component {
+class MainScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this._onPress = this._onPress.bind(this);
+  }
+
+  _onPress() {
+    const { navigator } = this.props;
+    navigator.push({
+      name: 'secondScreen',
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native World!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <TouchableOpacity
+          onPress={this._onPress}>
+          <Text
+          style={styles.buttonText}
+          >
+            Enter SecondScreen
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -33,18 +45,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  buttonText: {
+    fontSize: 25,
+    color: 'black'
+  }
 });
 
 MainScreen.PropTypes={
