@@ -2,6 +2,7 @@
  * Created by jrue on 16/11/18.
  */
 import React, {
+  Component,
   PropTypes,
 } from 'react';
 
@@ -19,6 +20,12 @@ import {
   TouchableOpacity,
   NativeModules,
 } from 'react-native';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { ViewActions, ViewKeys } from '../reducers';
+import { ViewSelector } from '../selectors';
 
 import Immutable from 'immutable';
 
@@ -224,6 +231,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    //通过reducer存储view的状态
+    this.props.viewActions.setAppState(AppState.currentState);
+
     AppState.addEventListener('change', this._handleAppStateChange);
     if (Platform.OS === 'android') {
       BackAndroid.addEventListener('hardwareBackPress', this._handleBackAndroid);
@@ -261,7 +271,7 @@ class App extends React.Component {
   }
 
   _handleAppStateChange(currentAppState) {
-
+    this.props.viewActions.setAppState(currentAppState);
   }
 
   configureScene(route, routeStack) {
@@ -319,7 +329,19 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-
+  isActive: PropTypes.bool,
 };
 
-module.exports = App;
+function mapStateToProps(state, props) {
+  return {
+    isActive:ViewSelector.isActive(state,props),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    viewActions: bindActionCreators(ViewActions, dispatch),
+  };
+}
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(App);
