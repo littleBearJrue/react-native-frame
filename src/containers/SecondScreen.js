@@ -11,10 +11,13 @@ import {
 
 import Immutable from 'immutable';
 
+import { mixin } from '../utils';
+
 class SecondScreen extends Component {
   constructor(props) {
     super(props);
-
+    
+    mixin.pureRenderMixin(this);
   }
 
   componentWillMount() {
@@ -24,6 +27,7 @@ class SecondScreen extends Component {
     navigator.setState({
       scenes: scenes.set('secondScreen', Immutable.fromJS({
         rightTitle: '分享',
+        rightTextColor: 'black',
       }))
     });
   }

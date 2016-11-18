@@ -2,10 +2,10 @@
  * Created by jrue on 16/11/18.
  */
 
-const reactMixin = require('react-mixin');
+const PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
 
 module.exports = {
-  timer(Component) {
-    reactMixin(Component.prototype, require('react-native-timer-mixin'));
+  pureRenderMixin(inst) {
+    inst.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(inst);
   },
 };

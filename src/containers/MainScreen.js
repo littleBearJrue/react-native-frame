@@ -10,9 +10,13 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import { mixin } from '../utils';
+
 class MainScreen extends Component {
   constructor(props) {
     super(props);
+
+    mixin.pureRenderMixin(this);
 
     this._onPress = this._onPress.bind(this);
   }

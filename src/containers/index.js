@@ -173,7 +173,7 @@ const NavigationBarRouteMapper = {
       rightColor = custom.getIn([route.name, kRightTextColor]);
     }
 
-    if ((rightTitle || source) && onPress) {
+    if ((rightTitle || source) || onPress) {
       return (
         <TouchableOpacity onPress={onPress}>
           <View style={[styles.navBarItem, styles.navBarRightButton]}>
