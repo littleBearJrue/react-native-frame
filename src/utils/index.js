@@ -4,4 +4,5 @@
 module.exports = {
   get Mixin() { return require('./mixin'); },
   get ScreenUtils() { return require('./screen'); },
+  get Network() { return require('./network')},
 };
