@@ -6,8 +6,11 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  NativeModules,
 } from 'react-native';
+
+const FetchAppInfo = NativeModules.MessageAlert;
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -35,6 +38,15 @@ class SecondScreen extends Component {
         rightTitle: '分享',
         rightTextColor: 'black',
       }))
+    });
+    FetchAppInfo.getPackageInfo().then(list => {
+      const currentData = list.map((obj) => {
+        return {
+          ...obj,
+        };
+      });
+    }).catch((error) => {
+      if (__DEV__) console.warn('getPackageInfo is error: ' + error);
     });
   }
 
